@@ -12,6 +12,7 @@ import { ProductWorkspace } from '@/components/views/ProductWorkspace';
 import { AgentMonitor } from '@/components/views/AgentMonitor';
 import { KnowledgeGraphView } from '@/components/views/KnowledgeGraphView';
 import { HumanReviewQueue } from '@/components/views/HumanReviewQueue';
+import { RAGAssistantView } from '@/components/views/RAGAssistantView';
 
 export default function Home() {
   const { activeView } = useProductContext();
@@ -23,6 +24,8 @@ export default function Home() {
       return <AuthPage />;
     case 'dashboard':
       return <DashboardView />;
+    case 'rag-assistant':
+      return <RAGAssistantView />;
     case 'upload':
       return <UploadCenter />;
     case 'pipeline':

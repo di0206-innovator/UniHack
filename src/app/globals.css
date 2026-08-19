@@ -3,29 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --bg-canvas: #090d16;
-  --bg-surface: #0f172a;
-  --bg-[#0e1424]: #0f172a;
-  --bg-[#070a12]: #090d16;
-  --bg-[#0a0e17]: #0f172a;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-subtle: #1e293b;
-  --border-strong: #334155;
-  --shadow-offset: rgba(0, 0, 0, 0.4);
+  --bg-canvas: #09090b;
+  --bg-surface: #18181b;
+  --bg-[#0e1424]: #18181b;
+  --bg-[#070a12]: #09090b;
+  --bg-[#0a0e17]: #18181b;
+  --bg-[#0f172a]: #18181b;
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  --border-subtle: #27272a;
+  --border-strong: #3f3f46;
+  --accent-amber: #f59e0b;
+  --accent-emerald: #10b981;
+  --accent-crimson: #ef4444;
 }
 
 html.light {
-  --bg-canvas: #f8fafc;
+  --bg-canvas: #fafafa;
   --bg-surface: #ffffff;
   --bg-[#0e1424]: #ffffff;
-  --bg-[#070a12]: #f1f5f9;
+  --bg-[#070a12]: #f4f4f5;
   --bg-[#0a0e17]: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --border-subtle: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --shadow-offset: rgba(0, 0, 0, 0.08);
+  --bg-[#0f172a]: #ffffff;
+  --text-main: #09090b;
+  --text-muted: #52525b;
+  --border-subtle: #e4e4e7;
+  --border-strong: #000000;
+  --accent-amber: #d97706;
+  --accent-emerald: #059669;
+  --accent-crimson: #dc2626;
 }
 
 body {
@@ -33,19 +39,19 @@ body {
   color: var(--text-main);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 /* Light mode structural overrides */
 html.light body {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: #fafafa;
+  color: #09090b;
 }
 
 html.light .bg-\[\#090d16\],
 html.light .bg-\[\#070a12\],
 html.light .bg-\[\#0a0e17\] {
-  background-color: #f8fafc !important;
+  background-color: #fafafa !important;
 }
 
 html.light .bg-\[\#0e1424\],
@@ -56,147 +62,214 @@ html.light .bg-\[\#0b192e\] {
 
 html.light .text-slate-100,
 html.light .text-slate-200 {
-  color: #0f172a !important;
+  color: #09090b !important;
 }
 
 html.light .text-slate-300,
 html.light .text-slate-400 {
-  color: #475569 !important;
+  color: #52525b !important;
 }
 
 html.light .border-slate-800,
 html.light .border-slate-700 {
-  border-color: #e2e8f0 !important;
+  border-color: #e4e4e7 !important;
 }
 
-/* Background Pattern */
+/* Background Grid Pattern */
 .bg-grid-pattern {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 html.light .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 }
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--bg-canvas);
+  border-left: 2px solid var(--border-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 4px;
+  background: #f59e0b;
+  border: 2px solid #000000;
+  border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #d97706;
 }
 
-/* --- REFINED INDUSTRIAL ENTERPRISE UTILITIES --- */
+/* --- STRICT NON-BLUE/VIOLET NEO-BRUTALIST UTILITIES --- */
 
-/* 1. Sleek Cards */
-.neo-card {
+/* 1. Neo-Brutalist Card with Solid Offset Shadow */
+.neo-brutal-card {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 6px -1px var(--shadow-offset), 0 2px 4px -2px var(--shadow-offset);
-  border-radius: 0.75rem;
-  transition: all 0.15s ease-in-out;
+  border: 2px solid var(--border-strong);
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-.neo-card:hover {
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 10px 15px -3px var(--shadow-offset), 0 4px 6px -4px var(--shadow-offset);
+.neo-brutal-card:hover {
+  border-color: #f59e0b;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
 }
 
-/* 2. Standardized Action Buttons */
-.neo-btn-primary {
-  height: 2.25rem; /* 36px */
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.75rem; /* 12px */
-  border: 1px solid rgba(125, 211, 252, 0.3);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
-  transition: all 0.15s ease;
-  display: inline-flex;
-  items-center: center;
-  justify-content: center;
+.neo-brutal-card-amber {
+  background-color: #1c1508;
+  border: 2px solid #f59e0b;
+  box-shadow: 4px 4px 0px 0px #000000;
 }
 
-.neo-btn-primary:hover {
-  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4);
-  transform: translateY(-1px);
+html.light .neo-brutal-card-amber {
+  background-color: #fffbeb;
+  border: 2px solid #d97706;
 }
 
-.neo-btn-primary:active {
-  transform: translateY(0);
+.neo-brutal-card-emerald {
+  background-color: #062016;
+  border: 2px solid #10b981;
+  box-shadow: 4px 4px 0px 0px #000000;
 }
 
-.neo-btn-google {
-  height: 2.25rem; /* 36px */
+html.light .neo-brutal-card-emerald {
+  background-color: #ecfdf5;
+  border: 2px solid #059669;
+}
+
+/* 2. Neo-Brutalist Buttons */
+.neo-brutal-btn {
+  background-color: #27272a;
+  color: #fafafa;
+  border: 2px solid #3f3f46;
+  box-shadow: 3px 3px 0px 0px #000000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.1s ease;
+}
+
+html.light .neo-brutal-btn {
   background-color: #ffffff;
-  color: #0f172a;
-  font-weight: 600;
-  font-size: 0.75rem; /* 12px */
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.15s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: #09090b;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px 0px #000000;
 }
 
-.neo-btn-google:hover {
-  background-color: #f8fafc;
-  border-color: #0284c7;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
-  transform: translateY(-1px);
+.neo-brutal-btn:hover {
+  background-color: #3f3f46;
+  border-color: #f59e0b;
+  color: #fbbf24;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px 0px #000000;
 }
 
-.neo-btn-secondary {
-  height: 2.25rem; /* 36px */
-  background-color: var(--bg-surface);
-  color: var(--text-main);
-  font-weight: 600;
-  font-size: 0.75rem; /* 12px */
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.5rem;
-  transition: all 0.15s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+html.light .neo-brutal-btn:hover {
+  background-color: #f4f4f5;
+  border-color: #d97706;
+  color: #b45309;
 }
 
-.neo-btn-secondary:hover {
-  border-color: #0284c7;
-  color: #38bdf8;
+.neo-brutal-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #000000;
 }
 
-/* 3. Inputs & Selects */
-.neo-input {
-  background-color: var(--bg-canvas);
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+/* Primary Amber Button */
+.neo-brutal-btn-primary {
+  background-color: #f59e0b;
+  color: #000000;
+  border: 2px solid #fbbf24;
+  box-shadow: 4px 4px 0px 0px #000000;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.1s ease;
 }
 
-.neo-input:focus {
+.neo-brutal-btn-primary:hover {
+  background-color: #fbbf24;
+  border-color: #fef08a;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.neo-brutal-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+/* Google OAuth Button */
+.neo-brutal-btn-google {
+  background-color: #ffffff;
+  color: #09090b;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #f59e0b;
+  font-weight: 700;
+  transition: all 0.1s ease;
+}
+
+.neo-brutal-btn-google:hover {
+  background-color: #f4f4f5;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #f59e0b;
+}
+
+.neo-brutal-btn-google:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #f59e0b;
+}
+
+/* 3. Inset Inputs */
+.neo-brutal-input {
+  background-color: #09090b;
+  color: #fafafa;
+  border: 2px solid #27272a;
+  box-shadow: inset 3px 3px 6px #000000;
+  transition: border-color 0.15s ease;
+}
+
+html.light .neo-brutal-input {
+  background-color: #ffffff;
+  color: #09090b;
+  border-color: #000000;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.neo-brutal-input:focus {
   outline: none;
-  border-color: #0284c7;
-  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+  border-color: #f59e0b;
+}
+
+/* 4. Badges */
+.neo-brutal-badge-amber {
+  background-color: #78350f;
+  color: #fef3c7;
+  border: 2px solid #f59e0b;
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.neo-brutal-badge-emerald {
+  background-color: #064e3b;
+  color: #d1fae5;
+  border: 2px solid #10b981;
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.neo-brutal-badge-crimson {
+  background-color: #881337;
+  color: #ffe4e6;
+  border: 2px solid #ef4444;
+  box-shadow: 2px 2px 0px 0px #000000;
 }

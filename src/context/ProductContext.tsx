@@ -6,7 +6,7 @@ import { AuditEvent, AuditAction } from '@/types/audit';
 import { SAMPLE_PRODUCTS } from '@/lib/data/sample-products';
 import { AuditTrailService } from '@/lib/audit/audit-service';
 
-type ViewMode = 'landing' | 'auth' | 'dashboard' | 'catalog' | 'upload' | 'workspace' | 'pipeline' | 'agent-monitor' | 'knowledge-graph' | 'review-queue';
+type ViewMode = 'landing' | 'auth' | 'dashboard' | 'catalog' | 'upload' | 'workspace' | 'pipeline' | 'agent-monitor' | 'knowledge-graph' | 'review-queue' | 'rag-assistant';
 
 interface ProductContextType {
   products: Product[];

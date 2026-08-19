@@ -19,16 +19,16 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   actions
 }) => {
   return (
-    <div className="neo-card flex flex-col md:flex-row md:items-center justify-between gap-4 p-6">
+    <div className="neo-brutal-card flex flex-col md:flex-row md:items-center justify-between gap-4 p-6">
       <div>
-        <div className="flex items-center gap-2 text-cyan-400 light:text-cyan-600 font-mono text-xs font-semibold uppercase tracking-wider mb-1.5">
-          <div className="p-1.5 bg-cyan-600/10 light:bg-cyan-50 border border-cyan-500/30 light:border-cyan-200 rounded-md text-cyan-400 light:text-cyan-600">
-            <Icon className="h-4 w-4" />
+        <div className="flex items-center gap-2 text-amber-500 font-mono text-xs font-black uppercase tracking-wider mb-1.5">
+          <div className="p-1 bg-amber-500 text-black border border-black font-black">
+            <Icon className="h-4 w-4 stroke-[2.5]" />
           </div>
           <span>{category}</span>
         </div>
-        <h1 className="text-2xl font-bold font-sans tracking-tight text-slate-100 light:text-slate-900">{title}</h1>
-        <p className="text-xs font-sans font-normal text-slate-300 light:text-slate-600 mt-1 max-w-2xl leading-relaxed">{subtitle}</p>
+        <h1 className="text-2xl font-black font-mono uppercase tracking-tight text-zinc-100 light:text-zinc-900">{title}</h1>
+        <p className="text-xs font-sans font-medium text-zinc-300 light:text-zinc-700 mt-1 max-w-2xl leading-relaxed">{subtitle}</p>
       </div>
 
       {actions && (
