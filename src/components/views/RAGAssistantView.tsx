@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 
 export const RAGAssistantView: React.FC = () => {
-  const { products, setSelectedProduct, setActiveView } = useProductContext();
+  const { products, selectProduct, setActiveView } = useProductContext();
   const [queryInput, setQueryInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [ragResult, setRagResult] = useState<RAGAnswerResponse | null>(null);
@@ -205,7 +205,7 @@ export const RAGAssistantView: React.FC = () => {
                   key={prod.id}
                   hoverable
                   onClick={() => {
-                    setSelectedProduct(prod);
+                    selectProduct(prod.id);
                     setActiveView('workspace');
                   }}
                   className="p-4 space-y-3 neo-brutal-card"
