@@ -3,6 +3,7 @@
 import React from 'react';
 import { useProductContext } from '@/context/ProductContext';
 import { useAuthContext } from '@/context/AuthContext';
+import { ProfileDropdown } from '@/components/profile/ProfileDropdown';
 import { 
   Cpu, 
   UploadCloud, 
@@ -89,6 +90,9 @@ export const LandingPage: React.FC = () => {
               <span>{isAuthenticated ? 'Go to Workspace' : 'Launch Platform'}</span>
               <ArrowRight className="h-4 w-4 stroke-[3]" />
             </button>
+
+            {/* Top-Right Profile / Settings & Theme Dropdown */}
+            <ProfileDropdown />
           </div>
         </div>
       </header>

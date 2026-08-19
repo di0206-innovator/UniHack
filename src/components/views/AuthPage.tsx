@@ -15,6 +15,8 @@ import {
   Zap
 } from 'lucide-react';
 
+import { ProfileDropdown } from '@/components/profile/ProfileDropdown';
+
 export const AuthPage: React.FC = () => {
   const { login, signup, signInWithGoogle, isLoading } = useAuthContext();
   const { setActiveView } = useProductContext();
@@ -44,8 +46,19 @@ export const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[#070a12] bg-grid-pattern">
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-slate-700 shadow-[10px_10px_0px_0px_#000000] bg-[#0e1424]">
+    <div className="min-h-screen flex flex-col justify-between p-6 bg-[#070a12] bg-grid-pattern relative">
+      {/* Top Bar with Profile & Theme Dropdown */}
+      <div className="w-full max-w-4xl mx-auto flex items-center justify-between pb-4">
+        <button
+          onClick={() => setActiveView('landing')}
+          className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-2 hover:underline"
+        >
+          ← Back to Landing Page
+        </button>
+        <ProfileDropdown />
+      </div>
+
+      <div className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-slate-700 shadow-[10px_10px_0px_0px_#000000] bg-[#0e1424]">
         {/* Left Branding & System Info */}
         <div className="p-8 space-y-6 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-slate-800 bg-[#0a0e17]">
           <div className="space-y-4">
