@@ -144,6 +144,17 @@ export class GeminiAIProvider implements AIProvider {
     return Boolean(this.apiKey);
   }
 
+  public static async generateText(prompt: string): Promise<string> {
+    const apiKey = process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
+    if (!apiKey) {
+      throw new Error('Gemini API key is not configured');
+    }
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const response = await model.generateContent(prompt);
+    return response.response.text();
+  }
+
   async extractProductInfo(request: ExtractionRequest): Promise<ExtractionResult> {
     if (!this.isAvailable()) {
       return new MockAIProvider().extractProductInfo(request);
