@@ -244,10 +244,10 @@ export class PDFExportService {
             ${product.specifications.map(s => `
               <tr>
                 <td><strong>${s.key}</strong></td>
-                <td>${s.value}</td>
+                <td>${Array.isArray(s.value) ? s.value.join(', ') : s.value}</td>
                 <td>${s.unit || '-'}</td>
-                <td><span style="color: ${s.status === 'verified' ? '#059669' : '#d97706'}; font-weight: 700;">${s.status.toUpperCase()}</span></td>
-                <td>${s.sourceDoc} (p. ${s.sourcePage})</td>
+                <td><span style="color: ${s.status === 'valid' ? '#059669' : '#d97706'}; font-weight: 700;">${s.status.toUpperCase()}</span></td>
+                <td>${s.confidence?.sourceDocName || 'Datasheet'} (p. ${s.confidence?.pageNumber || 1})</td>
               </tr>
             `).join('')}
           </tbody>

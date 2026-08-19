@@ -52,7 +52,7 @@ MANUFACTURER: ${p.manufacturer}
 CATEGORY: ${p.category}
 DESCRIPTION: ${p.shortDescription || p.description}
 SPECIFICATIONS:
-${p.specifications.map(s => ` - ${s.key}: ${s.value} ${s.unit || ''} (Status: ${s.status}, Source: ${s.sourceDoc} p.${s.sourcePage})`).join('\n')}
+${p.specifications.map(s => ` - ${s.key}: ${s.value} ${s.unit || ''} (Status: ${s.status}, Source: ${s.confidence?.sourceDocName || 'Datasheet'} p.${s.confidence?.pageNumber || 1})`).join('\n')}
 ----------------------------------------`).join('\n');
 
     const prompt = `You are the Forge AI Technical RAG Knowledge Agent for Industrial E-Commerce Catalog Intelligence.
@@ -79,13 +79,13 @@ INSTRUCTIONS:
     // 3. Extract Evidence Quotes
     const evidenceQuotes = targetProducts.flatMap(p => 
       p.specifications
-        .filter(s => s.status === 'verified' && s.evidenceQuote)
+        .filter(s => s.status === 'valid')
         .slice(0, 2)
         .map(s => ({
           sku: p.sku,
           productName: p.name,
-          quote: s.evidenceQuote || `${s.key}: ${s.value} ${s.unit || ''}`,
-          confidence: s.confidenceScore || 0.98
+          quote: s.confidence?.evidenceQuote || `${s.key}: ${s.value} ${s.unit || ''}`,
+          confidence: s.confidence?.score || 0.98
         }))
     ).slice(0, 6);
 
