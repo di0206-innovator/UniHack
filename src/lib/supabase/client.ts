@@ -1,31 +1,44 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://vpjsmgvmequzhgzotbph.supabase.co';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
-export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+export const isSupabaseConfigured = Boolean(
+  supabaseUrl && 
+  supabaseAnonKey && 
+  !supabaseUrl.includes('your-supabase') && 
+  !supabaseAnonKey.includes('your-supabase')
+);
 
 export const supabase = isSupabaseConfigured
-  ? createClient(supabaseUrl, supabaseAnonKey)
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true, // Critical for OAuth redirect handling
+      }
+    })
   : null;
 
 /**
  * Trigger Google OAuth Sign-In
+ * Redirects to Google, then back to the app's origin URL
  */
 export async function signInWithGoogleOAuth() {
   if (!supabase) {
-    console.warn('Supabase anon key not configured in environment variables. Falling back to Google account workspace auth.');
-    return { data: null, error: new Error('Supabase Anon Key not configured in .env.local') };
+    console.warn('Supabase not configured. Cannot perform Google OAuth.');
+    return { data: null, error: new Error('Supabase not configured') };
   }
 
-  const callbackUrl = typeof window !== 'undefined' 
-    ? `${window.location.origin}` 
-    : 'https://vpjsmgvmequzhgzotbph.supabase.co/auth/v1/callback';
+  // Redirect back to app's root URL after OAuth
+  const redirectTo = typeof window !== 'undefined' 
+    ? window.location.origin 
+    : '';
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: callbackUrl,
+      redirectTo,
       queryParams: {
         access_type: 'offline',
         prompt: 'consent',

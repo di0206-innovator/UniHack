@@ -12,9 +12,20 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+function resolveTheme(theme: Theme): 'dark' | 'light' {
+  if (theme === 'system') {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'dark';
+  }
+  return theme;
+}
+
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>('dark');
   const [effectiveTheme, setEffectiveTheme] = useState<'dark' | 'light'>('dark');
+  const [mounted, setMounted] = useState(false);
 
   // Load theme from localStorage on initial load
   useEffect(() => {
@@ -22,34 +33,60 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light' || savedTheme === 'system')) {
       setThemeState(savedTheme);
     }
+    setMounted(true);
   }, []);
 
   // Update theme class on HTML element
   useEffect(() => {
-    const root = document.documentElement;
+    if (!mounted) return;
     
-    let resolvedTheme: 'dark' | 'light' = 'dark';
-    if (theme === 'system') {
-      resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    } else {
-      resolvedTheme = theme;
-    }
+    const root = document.documentElement;
+    const resolved = resolveTheme(theme);
+    setEffectiveTheme(resolved);
 
-    setEffectiveTheme(resolvedTheme);
+    root.classList.remove('dark', 'light');
+    root.classList.add(resolved);
 
-    if (resolvedTheme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
+    // Update body background based on theme
+    if (resolved === 'dark') {
+      document.body.style.backgroundColor = '#09090b';
+      document.body.style.color = '#fafafa';
     } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
+      document.body.style.backgroundColor = '#fafafa';
+      document.body.style.color = '#09090b';
     }
-  }, [theme]);
+  }, [theme, mounted]);
+
+  // Listen for system theme changes when 'system' is selected
+  useEffect(() => {
+    if (theme !== 'system' || !mounted) return;
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e: MediaQueryListEvent) => {
+      const resolved = e.matches ? 'dark' : 'light';
+      setEffectiveTheme(resolved);
+      const root = document.documentElement;
+      root.classList.remove('dark', 'light');
+      root.classList.add(resolved);
+    };
+
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, [theme, mounted]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem('forge_ai_theme', newTheme);
   };
+
+  // Prevent flash of wrong theme
+  if (!mounted) {
+    return (
+      <ThemeContext.Provider value={{ theme: 'dark', effectiveTheme: 'dark', setTheme }}>
+        {children}
+      </ThemeContext.Provider>
+    );
+  }
 
   return (
     <ThemeContext.Provider value={{ theme, effectiveTheme, setTheme }}>

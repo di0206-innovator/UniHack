@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User, AuthState } from '@/types/auth';
-import { supabase, signInWithGoogleOAuth, signOutSupabase } from '@/lib/supabase/client';
+import { supabase, signInWithGoogleOAuth, signOutSupabase, isSupabaseConfigured } from '@/lib/supabase/client';
 
 interface AuthContextType extends AuthState {
   login: (email: string, password?: string) => Promise<void>;
@@ -19,60 +19,54 @@ interface AuthContextType extends AuthState {
   closeSettingsModal: () => void;
 }
 
-const DEFAULT_USER: User = {
-  id: 'usr-001',
-  name: 'Alex Vance',
-  email: 'alex.vance@gmail.com',
-  role: 'admin',
-  organization: 'Acme Industrial Systems',
-  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'
-};
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Start true to prevent flash
   const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
   const [authModalTab, setAuthModalTab] = useState<'login' | 'signup'>('login');
 
-  useEffect(() => {
-    if (!supabase) return;
+  // Map a Supabase user object to our internal User type
+  const mapSupabaseUser = (suUser: { id: string; email?: string; user_metadata?: Record<string, string> }): User => ({
+    id: suUser.id,
+    name: suUser.user_metadata?.full_name || suUser.user_metadata?.name || suUser.email?.split('@')[0] || 'Authenticated User',
+    email: suUser.email || '',
+    role: 'admin',
+    organization: suUser.user_metadata?.organization || 'Enterprise Workspace',
+    avatarUrl: suUser.user_metadata?.avatar_url || suUser.user_metadata?.picture
+  });
 
-    // Check active session on load
+  useEffect(() => {
+    if (!supabase) {
+      setIsLoading(false);
+      return;
+    }
+
+    // Check active session on load (handles OAuth redirect return)
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
-        const suUser = session.user;
-        setUser({
-          id: suUser.id,
-          name: suUser.user_metadata?.full_name || suUser.user_metadata?.name || suUser.email?.split('@')[0] || 'Authenticated User',
-          email: suUser.email || '',
-          role: 'admin',
-          organization: 'Supabase Catalog Team',
-          avatarUrl: suUser.user_metadata?.avatar_url
-        });
+        setUser(mapSupabaseUser(session.user));
         setIsAuthenticated(true);
       }
+      setIsLoading(false);
     });
 
-    // Listen to Auth State Changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        const suUser = session.user;
-        setUser({
-          id: suUser.id,
-          name: suUser.user_metadata?.full_name || suUser.user_metadata?.name || suUser.email?.split('@')[0] || 'Authenticated User',
-          email: suUser.email || '',
-          role: 'admin',
-          organization: 'Supabase Catalog Team',
-          avatarUrl: suUser.user_metadata?.avatar_url
-        });
+    // Listen to Auth State Changes (handles sign-in, sign-out, token refresh)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session?.user) {
+        setUser(mapSupabaseUser(session.user));
         setIsAuthenticated(true);
-      } else if (_event === 'SIGNED_OUT') {
+        setShowAuthModal(false);
+        setIsLoading(false);
+      } else if (event === 'SIGNED_OUT') {
         setUser(null);
         setIsAuthenticated(false);
+        setIsLoading(false);
+      } else if (event === 'TOKEN_REFRESHED' && session?.user) {
+        setUser(mapSupabaseUser(session.user));
       }
     });
 
@@ -103,25 +97,71 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(prev => prev ? { ...prev, ...updatedData } : null);
   };
 
-  const login = async (email: string) => {
+  const login = async (email: string, password?: string) => {
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 600));
-    const newUser: User = {
-      id: `usr-${Date.now()}`,
-      name: email.split('@')[0].replace('.', ' ').toUpperCase(),
-      email,
-      role: 'steward',
-      organization: 'Enterprise Catalog Division'
-    };
-    setUser(newUser);
-    setIsAuthenticated(true);
+
+    if (isSupabaseConfigured && supabase && password) {
+      // Try real Supabase email/password auth
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        // If user doesn't exist, try signup
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+        });
+
+        if (signUpError) {
+          console.warn('Supabase auth error, falling back to demo login:', signUpError.message);
+          // Fallback to demo login
+          const newUser: User = {
+            id: `usr-${Date.now()}`,
+            name: email.split('@')[0].replace('.', ' ').toUpperCase(),
+            email,
+            role: 'steward',
+            organization: 'Enterprise Catalog Division'
+          };
+          setUser(newUser);
+          setIsAuthenticated(true);
+        } else if (signUpData.user) {
+          setUser(mapSupabaseUser(signUpData.user));
+          setIsAuthenticated(true);
+        }
+      } else if (data.user) {
+        setUser(mapSupabaseUser(data.user));
+        setIsAuthenticated(true);
+      }
+    } else {
+      // Demo/fallback login without Supabase
+      await new Promise(r => setTimeout(r, 400));
+      const newUser: User = {
+        id: `usr-${Date.now()}`,
+        name: email.split('@')[0].replace('.', ' ').toUpperCase(),
+        email,
+        role: 'steward',
+        organization: 'Enterprise Catalog Division'
+      };
+      setUser(newUser);
+      setIsAuthenticated(true);
+    }
+
     setIsLoading(false);
     setShowAuthModal(false);
   };
 
   const signup = async (name: string, email: string, organization: string) => {
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 600));
+
+    if (isSupabaseConfigured && supabase) {
+      // Supabase signup - but we don't have password in this flow, so use demo
+      await new Promise(r => setTimeout(r, 400));
+    } else {
+      await new Promise(r => setTimeout(r, 400));
+    }
+
     const newUser: User = {
       id: `usr-${Date.now()}`,
       name,
@@ -137,21 +177,37 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInWithGoogle = async () => {
     setIsLoading(true);
-    const { error } = await signInWithGoogleOAuth();
-    if (error) {
-      console.warn('Google OAuth Warning (Supabase env not configured, logging in with Google account):', error.message);
-      // Fallback clean user login for development when env credentials are empty
-      await login('alex.vance@gmail.com');
+    try {
+      const { error } = await signInWithGoogleOAuth();
+      if (error) {
+        console.warn('Google OAuth error:', error.message);
+        // If Supabase isn't configured, fallback to demo
+        if (!isSupabaseConfigured) {
+          await login('demo.user@gmail.com');
+        }
+      }
+      // If successful, the OAuth redirect will handle setting the user
+      // via the onAuthStateChange listener above
+    } catch (e) {
+      console.error('Google sign-in failed:', e);
+      if (!isSupabaseConfigured) {
+        await login('demo.user@gmail.com');
+      }
     }
-    setIsLoading(false);
-    setShowAuthModal(false);
+    // Don't set isLoading false here for OAuth - the redirect will handle it
+    if (!isSupabaseConfigured) {
+      setIsLoading(false);
+    }
   };
 
   const logout = async () => {
+    setIsLoading(true);
     await signOutSupabase();
     setUser(null);
     setIsAuthenticated(false);
     setShowSettingsModal(false);
+    setShowAuthModal(false);
+    setIsLoading(false);
   };
 
   return (

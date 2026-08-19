@@ -42,65 +42,65 @@ export const AuthPage: React.FC = () => {
 
   const handleGoogleClick = async () => {
     await signInWithGoogle();
-    setActiveView('dashboard');
+    // For demo fallback, navigate; for real OAuth, redirect handles it
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between p-6 bg-[#070a12] bg-grid-pattern relative">
+    <div className="min-h-screen flex flex-col justify-between p-6 bg-zinc-50 dark:bg-[#09090b] bg-grid-pattern relative transition-colors">
       {/* Top Bar with Profile & Theme Dropdown */}
       <div className="w-full max-w-4xl mx-auto flex items-center justify-between pb-4">
         <button
           onClick={() => setActiveView('landing')}
-          className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-2 hover:underline"
+          className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-2 hover:underline"
         >
           ← Back to Landing Page
         </button>
         <ProfileDropdown />
       </div>
 
-      <div className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-slate-700 shadow-[10px_10px_0px_0px_#000000] bg-[#0e1424]">
+      <div className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 neo-brutal-card overflow-hidden">
         {/* Left Branding & System Info */}
-        <div className="p-8 space-y-6 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-slate-800 bg-[#0a0e17]">
+        <div className="p-8 space-y-6 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-[#18181b]">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-cyan-500 border-2 border-cyan-300 flex items-center justify-center text-slate-950 font-black shadow-[3px_3px_0px_0px_#000000]">
+              <div className="h-10 w-10 bg-amber-500 border-2 border-black flex items-center justify-center text-black font-black shadow-[3px_3px_0px_0px_#000000]">
                 <Cpu className="h-6 w-6 stroke-[2.5]" />
               </div>
               <div>
-                <h2 className="text-xl font-black uppercase font-mono tracking-wider text-slate-100">Forge AI</h2>
-                <span className="text-[9px] font-mono font-bold uppercase bg-cyan-500 text-slate-950 px-1.5 py-0.5 border border-cyan-300">
+                <h2 className="text-xl font-black uppercase font-mono tracking-wider text-zinc-900 dark:text-zinc-100">Forge AI</h2>
+                <span className="text-[9px] font-mono font-bold uppercase bg-amber-500 text-black px-1.5 py-0.5 border border-black">
                   ENTERPRISE GATEWAY
                 </span>
               </div>
             </div>
 
-            <h3 className="text-2xl font-black uppercase font-mono tracking-tight text-slate-100 pt-2">
+            <h3 className="text-2xl font-black uppercase font-mono tracking-tight text-zinc-900 dark:text-zinc-100 pt-2">
               Enterprise Single Sign-On Access
             </h3>
 
-            <p className="text-xs text-slate-300 font-sans font-medium leading-relaxed">
+            <p className="text-xs text-zinc-600 dark:text-zinc-300 font-sans font-medium leading-relaxed">
               Log in via your Google / Gmail account or enterprise SSO provider to gain access to 8-agent catalog execution telemetry, multi-modal PDF ingestion, and Supabase catalog storage.
             </p>
           </div>
 
-          <div className="space-y-2 pt-4 border-t-2 border-slate-800 font-mono text-xs">
-            <div className="flex items-center gap-2 text-slate-300">
-              <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+          <div className="space-y-2 pt-4 border-t-2 border-zinc-200 dark:border-zinc-800 font-mono text-xs">
+            <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
               <span>Google OAuth + Supabase Integrated</span>
             </div>
-            <div className="flex items-center gap-2 text-slate-300">
-              <CheckCircle2 className="h-4 w-4 text-cyan-400" />
+            <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+              <CheckCircle2 className="h-4 w-4 text-amber-500" />
               <span>Multi-Modal Gemini AI spec processing</span>
             </div>
-            <div className="flex items-center gap-2 text-slate-300">
-              <CheckCircle2 className="h-4 w-4 text-purple-400" />
+            <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
               <span>Verifiable audit trail & evidence links</span>
             </div>
           </div>
         </div>
 
         {/* Right Form Container */}
-        <div className="p-8 space-y-6 flex flex-col justify-between bg-[#0e1424]">
+        <div className="p-8 space-y-6 flex flex-col justify-between bg-white dark:bg-[#09090b]">
           <div className="space-y-4">
             {/* Primary Google Auth CTA */}
             <button
@@ -118,16 +118,16 @@ export const AuthPage: React.FC = () => {
             </button>
 
             <div className="relative flex items-center justify-center my-3">
-              <div className="border-t-2 border-slate-800 w-full"></div>
-              <span className="bg-[#0e1424] px-2 font-mono text-[10px] text-slate-400 font-bold uppercase tracking-wider">OR EMAIL SIGN IN</span>
+              <div className="border-t-2 border-zinc-200 dark:border-zinc-800 w-full"></div>
+              <span className="bg-white dark:bg-[#09090b] px-2 font-mono text-[10px] text-zinc-500 font-bold uppercase tracking-wider">OR EMAIL SIGN IN</span>
             </div>
 
             {/* Tab Switcher */}
-            <div className="flex border-2 border-slate-800 p-1 bg-[#070a12] font-mono text-xs">
+            <div className="flex border-2 border-black dark:border-zinc-800 p-1 bg-zinc-100 dark:bg-[#18181b] font-mono text-xs">
               <button
                 onClick={() => setTab('login')}
                 className={`flex-1 py-2 font-bold uppercase transition-all ${
-                  tab === 'login' ? 'bg-cyan-500 text-slate-950 border border-cyan-300' : 'text-slate-400 hover:text-slate-200'
+                  tab === 'login' ? 'bg-amber-500 text-black border border-black shadow-[1px_1px_0px_0px_#000000]' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
                 }`}
               >
                 Sign In
@@ -135,7 +135,7 @@ export const AuthPage: React.FC = () => {
               <button
                 onClick={() => setTab('signup')}
                 className={`flex-1 py-2 font-bold uppercase transition-all ${
-                  tab === 'signup' ? 'bg-cyan-500 text-slate-950 border border-cyan-300' : 'text-slate-400 hover:text-slate-200'
+                  tab === 'signup' ? 'bg-amber-500 text-black border border-black shadow-[1px_1px_0px_0px_#000000]' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
                 }`}
               >
                 Register
@@ -147,8 +147,8 @@ export const AuthPage: React.FC = () => {
               {tab === 'signup' && (
                 <>
                   <div className="space-y-1">
-                    <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
-                      <User className="h-3.5 w-3.5 text-cyan-400" /> Full Name
+                    <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
+                      <User className="h-3.5 w-3.5 text-amber-500" /> Full Name
                     </label>
                     <input
                       type="text"
@@ -156,28 +156,28 @@ export const AuthPage: React.FC = () => {
                       placeholder="e.g. Alex Vance"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+                      className="w-full neo-brutal-input px-3 py-2"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
-                      <Building2 className="h-3.5 w-3.5 text-purple-400" /> Organization Name
+                    <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
+                      <Building2 className="h-3.5 w-3.5 text-amber-500" /> Organization Name
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. Acme Industrial Automation"
                       value={organization}
                       onChange={(e) => setOrganization(e.target.value)}
-                      className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+                      className="w-full neo-brutal-input px-3 py-2"
                     />
                   </div>
                 </>
               )}
 
               <div className="space-y-1">
-                <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
-                  <Mail className="h-3.5 w-3.5 text-cyan-400" /> Work Email
+                <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
+                  <Mail className="h-3.5 w-3.5 text-amber-500" /> Work Email
                 </label>
                 <input
                   type="email"
@@ -185,13 +185,13 @@ export const AuthPage: React.FC = () => {
                   placeholder="alex.vance@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+                  className="w-full neo-brutal-input px-3 py-2"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
-                  <Lock className="h-3.5 w-3.5 text-emerald-400" /> Password
+                <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[11px]">
+                  <Lock className="h-3.5 w-3.5 text-emerald-500" /> Password
                 </label>
                 <input
                   type="password"
@@ -199,7 +199,7 @@ export const AuthPage: React.FC = () => {
                   placeholder="••••••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+                  className="w-full neo-brutal-input px-3 py-2"
                 />
               </div>
 

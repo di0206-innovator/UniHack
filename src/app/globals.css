@@ -2,19 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg-canvas: #09090b;
-  --bg-surface: #18181b;
-  --text-main: #fafafa;
-  --text-muted: #a1a1aa;
-  --border-subtle: #27272a;
-  --border-strong: #3f3f46;
-  --accent-amber: #f59e0b;
-  --accent-emerald: #10b981;
-  --accent-crimson: #ef4444;
-}
+/* ==========================================
+   CSS VARIABLE ENGINE — LIGHT IS DEFAULT
+   ========================================== */
 
-html.light {
+:root {
   --bg-canvas: #fafafa;
   --bg-surface: #ffffff;
   --text-main: #09090b;
@@ -26,6 +18,18 @@ html.light {
   --accent-crimson: #dc2626;
 }
 
+html.dark {
+  --bg-canvas: #09090b;
+  --bg-surface: #18181b;
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  --border-subtle: #27272a;
+  --border-strong: #3f3f46;
+  --accent-amber: #f59e0b;
+  --accent-emerald: #10b981;
+  --accent-crimson: #ef4444;
+}
+
 body {
   background-color: var(--bg-canvas);
   color: var(--text-main);
@@ -34,76 +38,18 @@ body {
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* ==========================================
-   COMPREHENSIVE LIGHT THEME STRUCTURAL ENGINE
-   ========================================== */
-
-html.light body {
-  background-color: #fafafa !important;
-  color: #09090b !important;
-}
-
-/* Light Mode Background Overrides */
-html.light .bg-\[\#09090b\],
-html.light .bg-\[\#090d16\],
-html.light .bg-\[\#070a12\],
-html.light .bg-\[\#0a0e17\] {
-  background-color: #fafafa !important;
-}
-
-html.light .bg-\[\#18181b\],
-html.light .bg-\[\#0e1424\],
-html.light .bg-\[\#0f172a\],
-html.light .bg-\[\#0b192e\],
-html.light .bg-zinc-900,
-html.light .bg-zinc-950 {
-  background-color: #ffffff !important;
-}
-
-html.light .bg-zinc-800 {
-  background-color: #f4f4f5 !important;
-}
-
-/* Light Mode Text Overrides */
-html.light .text-zinc-100,
-html.light .text-zinc-200,
-html.light .text-slate-100,
-html.light .text-slate-200 {
-  color: #09090b !important;
-}
-
-html.light .text-zinc-300,
-html.light .text-zinc-400,
-html.light .text-slate-300,
-html.light .text-slate-400 {
-  color: #3f3f46 !important;
-}
-
-html.light .text-zinc-500,
-html.light .text-slate-500 {
-  color: #71717a !important;
-}
-
-/* Light Mode Border Overrides */
-html.light .border-zinc-800,
-html.light .border-zinc-700,
-html.light .border-slate-800,
-html.light .border-slate-700 {
-  border-color: #e4e4e7 !important;
-}
-
 /* Background Grid Pattern */
 .bg-grid-pattern {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-}
-
-html.light .bg-grid-pattern {
-  background-image: 
     linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+html.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 /* Custom Scrollbars */
@@ -127,19 +73,21 @@ html.light .bg-grid-pattern {
   background: #d97706;
 }
 
-/* --- STRICT NON-BLUE/VIOLET NEO-BRUTALIST UTILITIES --- */
+/* ==========================================
+   NEO-BRUTALIST COMPONENT UTILITIES
+   ========================================== */
 
 /* 1. Neo-Brutalist Card with Solid Offset Shadow */
 .neo-brutal-card {
-  background-color: var(--bg-surface);
-  border: 2px solid var(--border-strong);
+  background-color: #ffffff;
+  border: 2px solid #000000;
   box-shadow: 4px 4px 0px 0px #000000;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-html.light .neo-brutal-card {
-  background-color: #ffffff;
-  border: 2px solid #000000;
+html.dark .neo-brutal-card {
+  background-color: #18181b;
+  border: 2px solid #3f3f46;
   box-shadow: 4px 4px 0px 0px #000000;
 }
 
@@ -150,32 +98,32 @@ html.light .neo-brutal-card {
 }
 
 .neo-brutal-card-amber {
-  background-color: #1c1508;
-  border: 2px solid #f59e0b;
+  background-color: #fffbeb;
+  border: 2px solid #d97706;
   box-shadow: 4px 4px 0px 0px #000000;
 }
 
-html.light .neo-brutal-card-amber {
-  background-color: #fffbeb;
-  border: 2px solid #d97706;
+html.dark .neo-brutal-card-amber {
+  background-color: #1c1508;
+  border: 2px solid #f59e0b;
 }
 
 .neo-brutal-card-emerald {
-  background-color: #062016;
-  border: 2px solid #10b981;
+  background-color: #ecfdf5;
+  border: 2px solid #059669;
   box-shadow: 4px 4px 0px 0px #000000;
 }
 
-html.light .neo-brutal-card-emerald {
-  background-color: #ecfdf5;
-  border: 2px solid #059669;
+html.dark .neo-brutal-card-emerald {
+  background-color: #062016;
+  border: 2px solid #10b981;
 }
 
 /* 2. Neo-Brutalist Buttons */
 .neo-brutal-btn {
-  background-color: #27272a;
-  color: #fafafa;
-  border: 2px solid #3f3f46;
+  background-color: #ffffff;
+  color: #09090b;
+  border: 2px solid #000000;
   box-shadow: 3px 3px 0px 0px #000000;
   font-weight: 700;
   text-transform: uppercase;
@@ -183,25 +131,24 @@ html.light .neo-brutal-card-emerald {
   transition: all 0.1s ease;
 }
 
-html.light .neo-brutal-btn {
-  background-color: #ffffff;
-  color: #09090b;
-  border: 2px solid #000000;
-  box-shadow: 3px 3px 0px 0px #000000;
+html.dark .neo-brutal-btn {
+  background-color: #27272a;
+  color: #fafafa;
+  border: 2px solid #3f3f46;
 }
 
 .neo-brutal-btn:hover {
-  background-color: #3f3f46;
-  border-color: #f59e0b;
-  color: #fbbf24;
+  background-color: #f4f4f5;
+  border-color: #d97706;
+  color: #b45309;
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0px 0px #000000;
 }
 
-html.light .neo-brutal-btn:hover {
-  background-color: #f4f4f5;
-  border-color: #d97706;
-  color: #b45309;
+html.dark .neo-brutal-btn:hover {
+  background-color: #3f3f46;
+  border-color: #f59e0b;
+  color: #fbbf24;
 }
 
 .neo-brutal-btn:active {
@@ -256,18 +203,18 @@ html.light .neo-brutal-btn:hover {
 
 /* 3. Inset Inputs */
 .neo-brutal-input {
-  background-color: #09090b;
-  color: #fafafa;
-  border: 2px solid #27272a;
-  box-shadow: inset 3px 3px 6px #000000;
+  background-color: #ffffff;
+  color: #09090b;
+  border: 2px solid #000000;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.08);
   transition: border-color 0.15s ease;
 }
 
-html.light .neo-brutal-input {
-  background-color: #ffffff;
-  color: #09090b;
-  border-color: #000000;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.08);
+html.dark .neo-brutal-input {
+  background-color: #09090b;
+  color: #fafafa;
+  border-color: #27272a;
+  box-shadow: inset 3px 3px 6px #000000;
 }
 
 .neo-brutal-input:focus {
@@ -277,40 +224,106 @@ html.light .neo-brutal-input {
 
 /* 4. Badges */
 .neo-brutal-badge-amber {
-  background-color: #78350f;
-  color: #fef3c7;
-  border: 2px solid #f59e0b;
-  box-shadow: 2px 2px 0px 0px #000000;
-}
-
-html.light .neo-brutal-badge-amber {
   background-color: #fef3c7;
   color: #78350f;
   border: 2px solid #d97706;
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+html.dark .neo-brutal-badge-amber {
+  background-color: #78350f;
+  color: #fef3c7;
+  border: 2px solid #f59e0b;
 }
 
 .neo-brutal-badge-emerald {
-  background-color: #064e3b;
-  color: #d1fae5;
-  border: 2px solid #10b981;
-  box-shadow: 2px 2px 0px 0px #000000;
-}
-
-html.light .neo-brutal-badge-emerald {
   background-color: #d1fae5;
   color: #064e3b;
   border: 2px solid #059669;
-}
-
-.neo-brutal-badge-crimson {
-  background-color: #881337;
-  color: #ffe4e6;
-  border: 2px solid #ef4444;
   box-shadow: 2px 2px 0px 0px #000000;
 }
 
-html.light .neo-brutal-badge-crimson {
+html.dark .neo-brutal-badge-emerald {
+  background-color: #064e3b;
+  color: #d1fae5;
+  border: 2px solid #10b981;
+}
+
+.neo-brutal-badge-crimson {
   background-color: #ffe4e6;
   color: #881337;
   border: 2px solid #dc2626;
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+html.dark .neo-brutal-badge-crimson {
+  background-color: #881337;
+  color: #ffe4e6;
+  border: 2px solid #ef4444;
+}
+
+/* ==========================================
+   LIGHT MODE STRUCTURAL OVERRIDES
+   (For inline Tailwind dark: classes not yet converted)
+   ========================================== */
+
+/* Light mode fix for hardcoded dark backgrounds */
+html:not(.dark) .bg-\[\#09090b\],
+html:not(.dark) .bg-\[\#090d16\],
+html:not(.dark) .bg-\[\#070a12\],
+html:not(.dark) .bg-\[\#0a0e17\] {
+  background-color: #fafafa !important;
+}
+
+html:not(.dark) .bg-\[\#18181b\],
+html:not(.dark) .bg-\[\#0e1424\],
+html:not(.dark) .bg-\[\#0f172a\],
+html:not(.dark) .bg-\[\#0b192e\] {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-zinc-900 {
+  background-color: #f4f4f5 !important;
+}
+
+html:not(.dark) .bg-zinc-950 {
+  background-color: #fafafa !important;
+}
+
+/* Light mode text overrides */
+html:not(.dark) .text-zinc-100,
+html:not(.dark) .text-zinc-200,
+html:not(.dark) .text-slate-100,
+html:not(.dark) .text-slate-200 {
+  color: #09090b !important;
+}
+
+html:not(.dark) .text-zinc-300,
+html:not(.dark) .text-zinc-400,
+html:not(.dark) .text-slate-300,
+html:not(.dark) .text-slate-400 {
+  color: #3f3f46 !important;
+}
+
+html:not(.dark) .text-zinc-500,
+html:not(.dark) .text-slate-500 {
+  color: #71717a !important;
+}
+
+/* Light mode border overrides */
+html:not(.dark) .border-zinc-800,
+html:not(.dark) .border-zinc-700,
+html:not(.dark) .border-slate-800,
+html:not(.dark) .border-slate-700 {
+  border-color: #e4e4e7 !important;
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.15s ease-out;
 }

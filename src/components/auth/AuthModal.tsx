@@ -37,22 +37,22 @@ export const AuthModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-[#0e1424] border-2 border-slate-700 w-full max-w-md shadow-[10px_10px_0px_0px_#000000] p-6 space-y-5">
+    <div className="fixed inset-0 z-50 bg-black/60 dark:bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="neo-brutal-card w-full max-w-md p-6 space-y-5 bg-white dark:bg-[#18181b]">
         {/* Modal Header */}
-        <div className="flex items-center justify-between border-b-2 border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b-2 border-zinc-200 dark:border-zinc-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 bg-cyan-500 border-2 border-cyan-300 flex items-center justify-center text-slate-950 font-black shadow-[2px_2px_0px_0px_#000000]">
+            <div className="h-9 w-9 bg-amber-500 border-2 border-black flex items-center justify-center text-black font-black shadow-[2px_2px_0px_0px_#000000]">
               <Cpu className="h-5 w-5 stroke-[2.5]" />
             </div>
             <div>
-              <h3 className="font-black text-slate-100 uppercase font-mono text-base tracking-wider">Forge AI</h3>
-              <p className="text-[10px] font-mono text-cyan-400">ENTERPRISE GATEWAY</p>
+              <h3 className="font-black text-zinc-900 dark:text-zinc-100 uppercase font-mono text-base tracking-wider">Forge AI</h3>
+              <p className="text-[10px] font-mono text-amber-600 dark:text-amber-400">ENTERPRISE GATEWAY</p>
             </div>
           </div>
           <button 
             onClick={closeAuthModal} 
-            className="p-1.5 bg-[#070a12] border-2 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600 shadow-[2px_2px_0px_0px_#000000]"
+            className="p-1.5 bg-zinc-100 dark:bg-[#09090b] border-2 border-zinc-300 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-500 shadow-[2px_2px_0px_0px_#000000]"
           >
             <X className="h-4 w-4 stroke-[2.5]" />
           </button>
@@ -74,16 +74,16 @@ export const AuthModal: React.FC = () => {
         </button>
 
         <div className="relative flex items-center justify-center my-2">
-          <div className="border-t-2 border-slate-800 w-full"></div>
-          <span className="bg-[#0e1424] px-2 font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider">OR EMAIL</span>
+          <div className="border-t-2 border-zinc-200 dark:border-zinc-800 w-full"></div>
+          <span className="bg-white dark:bg-[#18181b] px-2 font-mono text-[10px] font-bold text-zinc-400 uppercase tracking-wider">OR EMAIL</span>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex border-2 border-slate-800 p-1 bg-[#070a12] font-mono text-xs">
+        <div className="flex border-2 border-black dark:border-zinc-800 p-1 bg-zinc-100 dark:bg-[#09090b] font-mono text-xs">
           <button
             onClick={() => setTab('login')}
             className={`flex-1 py-1.5 font-bold uppercase transition-all ${
-              tab === 'login' ? 'bg-cyan-500 text-slate-950 border border-cyan-300' : 'text-slate-400 hover:text-slate-200'
+              tab === 'login' ? 'bg-amber-500 text-black border border-black shadow-[1px_1px_0px_0px_#000000]' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
             }`}
           >
             Sign In
@@ -91,7 +91,7 @@ export const AuthModal: React.FC = () => {
           <button
             onClick={() => setTab('signup')}
             className={`flex-1 py-1.5 font-bold uppercase transition-all ${
-              tab === 'signup' ? 'bg-cyan-500 text-slate-950 border border-cyan-300' : 'text-slate-400 hover:text-slate-200'
+              tab === 'signup' ? 'bg-amber-500 text-black border border-black shadow-[1px_1px_0px_0px_#000000]' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
             }`}
           >
             Register
@@ -103,8 +103,8 @@ export const AuthModal: React.FC = () => {
           {tab === 'signup' && (
             <>
               <div className="space-y-1">
-                <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
-                  <User className="h-3.5 w-3.5 text-cyan-400" /> Full Name
+                <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
+                  <User className="h-3.5 w-3.5 text-amber-500" /> Full Name
                 </label>
                 <input
                   type="text"
@@ -112,28 +112,28 @@ export const AuthModal: React.FC = () => {
                   placeholder="e.g. Alex Vance"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+                  className="w-full neo-brutal-input px-3 py-2"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
-                  <Building2 className="h-3.5 w-3.5 text-purple-400" /> Organization Name
+                <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
+                  <Building2 className="h-3.5 w-3.5 text-amber-500" /> Organization Name
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Acme Industrial Automation"
                   value={organization}
                   onChange={(e) => setOrganization(e.target.value)}
-                  className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+                  className="w-full neo-brutal-input px-3 py-2"
                 />
               </div>
             </>
           )}
 
           <div className="space-y-1">
-            <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
-              <Mail className="h-3.5 w-3.5 text-cyan-400" /> Work Email
+            <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
+              <Mail className="h-3.5 w-3.5 text-amber-500" /> Work Email
             </label>
             <input
               type="email"
@@ -141,13 +141,13 @@ export const AuthModal: React.FC = () => {
               placeholder="alex.vance@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+              className="w-full neo-brutal-input px-3 py-2"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-slate-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
-              <Lock className="h-3.5 w-3.5 text-emerald-400" /> Password
+            <label className="text-zinc-600 dark:text-zinc-300 font-bold uppercase flex items-center gap-1.5 text-[10px]">
+              <Lock className="h-3.5 w-3.5 text-emerald-500" /> Password
             </label>
             <input
               type="password"
@@ -155,7 +155,7 @@ export const AuthModal: React.FC = () => {
               placeholder="••••••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full neo-brutal-input px-3 py-2 text-slate-200"
+              className="w-full neo-brutal-input px-3 py-2"
             />
           </div>
 
@@ -170,9 +170,9 @@ export const AuthModal: React.FC = () => {
         </form>
 
         {/* Enterprise SAML Info */}
-        <div className="pt-2 border-t-2 border-slate-800 text-center">
+        <div className="pt-2 border-t-2 border-zinc-200 dark:border-zinc-800 text-center">
           <button
-            onClick={() => login('steward@okta-saml.com')}
+            onClick={() => login('steward@okta-saml.com', 'enterprise-sso')}
             className="w-full neo-brutal-btn py-2 px-3 text-[11px] flex items-center justify-center gap-2"
           >
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" /> Okta / Enterprise SAML 2.0
