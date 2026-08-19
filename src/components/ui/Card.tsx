@@ -18,14 +18,14 @@ export const Card: React.FC<CardProps> = ({
   variant = 'flat'
 }) => {
   const baseStyle = variant === 'sunken' 
-    ? 'bg-[#060911] border-2 border-slate-800 shadow-[inset_3px_3px_6px_#000000]' 
-    : 'bg-[#0e1424] border-2 border-slate-800 shadow-[4px_4px_0px_0px_#000000]';
+    ? 'bg-[#090d16] light:bg-slate-100 border border-slate-800 light:border-slate-200 rounded-xl' 
+    : 'neo-card';
 
   return (
     <div
       onClick={onClick}
       className={`${baseStyle} p-5 transition-all ${
-        hoverable ? 'hover:border-cyan-500 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#000000] cursor-pointer' : ''
+        hoverable ? 'hover:border-cyan-500 hover:-translate-y-0.5 cursor-pointer' : ''
       } ${className}`}
     >
       {children}
