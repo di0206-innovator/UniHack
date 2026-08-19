@@ -5,10 +5,6 @@
 :root {
   --bg-canvas: #09090b;
   --bg-surface: #18181b;
-  --bg-[#0e1424]: #18181b;
-  --bg-[#070a12]: #09090b;
-  --bg-[#0a0e17]: #18181b;
-  --bg-[#0f172a]: #18181b;
   --text-main: #fafafa;
   --text-muted: #a1a1aa;
   --border-subtle: #27272a;
@@ -21,10 +17,6 @@
 html.light {
   --bg-canvas: #fafafa;
   --bg-surface: #ffffff;
-  --bg-[#0e1424]: #ffffff;
-  --bg-[#070a12]: #f4f4f5;
-  --bg-[#0a0e17]: #ffffff;
-  --bg-[#0f172a]: #ffffff;
   --text-main: #09090b;
   --text-muted: #52525b;
   --border-subtle: #e4e4e7;
@@ -42,34 +34,59 @@ body {
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Light mode structural overrides */
+/* ==========================================
+   COMPREHENSIVE LIGHT THEME STRUCTURAL ENGINE
+   ========================================== */
+
 html.light body {
-  background-color: #fafafa;
-  color: #09090b;
+  background-color: #fafafa !important;
+  color: #09090b !important;
 }
 
+/* Light Mode Background Overrides */
+html.light .bg-\[\#09090b\],
 html.light .bg-\[\#090d16\],
 html.light .bg-\[\#070a12\],
 html.light .bg-\[\#0a0e17\] {
   background-color: #fafafa !important;
 }
 
+html.light .bg-\[\#18181b\],
 html.light .bg-\[\#0e1424\],
 html.light .bg-\[\#0f172a\],
-html.light .bg-\[\#0b192e\] {
+html.light .bg-\[\#0b192e\],
+html.light .bg-zinc-900,
+html.light .bg-zinc-950 {
   background-color: #ffffff !important;
 }
 
+html.light .bg-zinc-800 {
+  background-color: #f4f4f5 !important;
+}
+
+/* Light Mode Text Overrides */
+html.light .text-zinc-100,
+html.light .text-zinc-200,
 html.light .text-slate-100,
 html.light .text-slate-200 {
   color: #09090b !important;
 }
 
+html.light .text-zinc-300,
+html.light .text-zinc-400,
 html.light .text-slate-300,
 html.light .text-slate-400 {
-  color: #52525b !important;
+  color: #3f3f46 !important;
 }
 
+html.light .text-zinc-500,
+html.light .text-slate-500 {
+  color: #71717a !important;
+}
+
+/* Light Mode Border Overrides */
+html.light .border-zinc-800,
+html.light .border-zinc-700,
 html.light .border-slate-800,
 html.light .border-slate-700 {
   border-color: #e4e4e7 !important;
@@ -85,8 +102,8 @@ html.light .border-slate-700 {
 
 html.light .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
 }
 
 /* Custom Scrollbars */
@@ -118,6 +135,12 @@ html.light .bg-grid-pattern {
   border: 2px solid var(--border-strong);
   box-shadow: 4px 4px 0px 0px #000000;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+html.light .neo-brutal-card {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
 }
 
 .neo-brutal-card:hover {
@@ -260,6 +283,12 @@ html.light .neo-brutal-input {
   box-shadow: 2px 2px 0px 0px #000000;
 }
 
+html.light .neo-brutal-badge-amber {
+  background-color: #fef3c7;
+  color: #78350f;
+  border: 2px solid #d97706;
+}
+
 .neo-brutal-badge-emerald {
   background-color: #064e3b;
   color: #d1fae5;
@@ -267,9 +296,21 @@ html.light .neo-brutal-input {
   box-shadow: 2px 2px 0px 0px #000000;
 }
 
+html.light .neo-brutal-badge-emerald {
+  background-color: #d1fae5;
+  color: #064e3b;
+  border: 2px solid #059669;
+}
+
 .neo-brutal-badge-crimson {
   background-color: #881337;
   color: #ffe4e6;
   border: 2px solid #ef4444;
   box-shadow: 2px 2px 0px 0px #000000;
+}
+
+html.light .neo-brutal-badge-crimson {
+  background-color: #ffe4e6;
+  color: #881337;
+  border: 2px solid #dc2626;
 }

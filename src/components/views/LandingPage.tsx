@@ -34,9 +34,9 @@ export const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] light:bg-[#fafafa] bg-grid-pattern text-zinc-100 light:text-zinc-900 font-sans pb-24 transition-colors">
+    <div className="min-h-screen bg-zinc-50 dark:bg-[#09090b] bg-grid-pattern text-zinc-900 dark:text-zinc-100 font-sans pb-24 transition-colors">
       {/* Top Navbar */}
-      <header className="sticky top-0 z-50 bg-[#18181b] light:bg-white border-b-2 border-zinc-800 light:border-black px-6 py-3 shadow-[0px_4px_0px_0px_#000000]">
+      <header className="sticky top-0 z-50 bg-white dark:bg-[#18181b] border-b-2 border-black dark:border-zinc-800 px-6 py-3 shadow-[0px_4px_0px_0px_#000000]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Brand Logo & Neo-Brutalist Badge */}
           <div className="flex items-center gap-3">
@@ -44,7 +44,7 @@ export const LandingPage: React.FC = () => {
               <Cpu className="h-5 w-5 stroke-[2.5]" />
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-black text-zinc-100 light:text-zinc-900 tracking-wider text-lg uppercase font-mono">
+              <span className="font-black text-zinc-900 dark:text-zinc-100 tracking-wider text-lg uppercase font-mono">
                 Forge AI
               </span>
               <span className="text-[9px] font-mono font-black text-black bg-amber-500 border border-black px-1.5 py-0.2 uppercase">
@@ -54,11 +54,11 @@ export const LandingPage: React.FC = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-xs font-mono font-bold text-zinc-300 light:text-zinc-700 uppercase tracking-wider">
-            <a href="#rag" className="hover:text-amber-400 transition-colors">RAG Assistant</a>
-            <a href="#architecture" className="hover:text-amber-400 transition-colors">8-Agent System</a>
-            <a href="#demo" className="hover:text-amber-400 transition-colors">PDF Export</a>
-            <a href="#pricing" className="hover:text-amber-400 transition-colors">Pricing</a>
+          <div className="hidden md:flex items-center gap-8 text-xs font-mono font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
+            <a href="#rag" className="hover:text-amber-500 transition-colors">RAG Assistant</a>
+            <a href="#architecture" className="hover:text-amber-500 transition-colors">8-Agent System</a>
+            <a href="#demo" className="hover:text-amber-500 transition-colors">PDF Export</a>
+            <a href="#pricing" className="hover:text-amber-500 transition-colors">Pricing</a>
           </div>
 
           {/* Action Controls Header Bar */}
@@ -99,7 +99,7 @@ export const LandingPage: React.FC = () => {
       {/* Main Page Container */}
       <main className="max-w-7xl mx-auto px-6 pt-12 space-y-16">
         {/* Hero Section */}
-        <section className="neo-brutal-card p-8 md:p-12 relative overflow-hidden">
+        <section className="neo-brutal-card p-8 md:p-12 relative overflow-hidden bg-white dark:bg-[#18181b] border-2 border-black dark:border-zinc-800 shadow-[6px_6px_0px_0px_#000000]">
           <div className="grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-8 space-y-6">
               <div className="inline-flex items-center gap-2 bg-amber-500 text-black border-2 border-black px-3 py-1 text-xs font-mono font-bold uppercase shadow-[2px_2px_0px_0px_#000000]">
@@ -107,13 +107,13 @@ export const LandingPage: React.FC = () => {
                 <span>Enterprise RAG & 8-Agent Industrial AI Engine</span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-black uppercase font-mono tracking-tight text-zinc-100 light:text-zinc-900 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-black uppercase font-mono tracking-tight text-zinc-900 dark:text-zinc-100 leading-tight">
                 AI-Powered RAG Spec Extraction & Verifiable PDF Dossier Engine
               </h1>
 
-              <p className="text-zinc-300 light:text-zinc-700 text-sm md:text-base leading-relaxed max-w-2xl font-sans font-medium">
+              <p className="text-zinc-700 dark:text-zinc-300 text-sm md:text-base leading-relaxed max-w-2xl font-sans font-medium">
                 Transform unstructured technical datasheets, supplier PDFs, and raw company documents into 
-                <strong className="text-amber-400 light:text-amber-700 font-bold"> structured product twins and instant RAG knowledge answers</strong> with 1-Click PDF exports.
+                <strong className="text-amber-600 dark:text-amber-400 font-bold"> structured product twins and instant RAG knowledge answers</strong> with 1-Click PDF exports.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -143,30 +143,30 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Side Architecture Status Box */}
-            <div className="md:col-span-4 bg-[#09090b] light:bg-zinc-100 p-5 border-2 border-zinc-800 light:border-black shadow-[4px_4px_0px_0px_#000000] space-y-4">
-              <div className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider flex items-center justify-between border-b-2 border-zinc-800 light:border-black pb-2">
+            <div className="md:col-span-4 bg-zinc-100 dark:bg-[#09090b] p-5 border-2 border-black dark:border-zinc-800 shadow-[4px_4px_0px_0px_#000000] space-y-4">
+              <div className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center justify-between border-b-2 border-black dark:border-zinc-800 pb-2">
                 <span>SYSTEM ARCHITECTURE</span>
-                <span className="text-emerald-400 font-bold flex items-center gap-1.5 text-[11px]">
-                  <span className="h-2.5 w-2.5 bg-emerald-400 rounded-none animate-pulse"></span> ONLINE
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1.5 text-[11px]">
+                  <span className="h-2.5 w-2.5 bg-emerald-500 rounded-none animate-pulse"></span> ONLINE
                 </span>
               </div>
 
               <div className="space-y-2 text-xs font-mono font-bold">
-                <div className="flex justify-between items-center bg-[#18181b] light:bg-white p-2.5 border border-zinc-800 light:border-black">
-                  <span className="text-zinc-400">RAG AI ENGINE</span>
-                  <span className="text-amber-400">Gemini Multi-Modal</span>
+                <div className="flex justify-between items-center bg-white dark:bg-[#18181b] p-2.5 border border-black dark:border-zinc-800">
+                  <span className="text-zinc-600 dark:text-zinc-400">RAG AI ENGINE</span>
+                  <span className="text-amber-600 dark:text-amber-400">Gemini Multi-Modal</span>
                 </div>
-                <div className="flex justify-between items-center bg-[#18181b] light:bg-white p-2.5 border border-zinc-800 light:border-black">
-                  <span className="text-zinc-400">PDF EXPORT ENGINE</span>
-                  <span className="text-emerald-400">1-Click PDF Dossier</span>
+                <div className="flex justify-between items-center bg-white dark:bg-[#18181b] p-2.5 border border-black dark:border-zinc-800">
+                  <span className="text-zinc-600 dark:text-zinc-400">PDF EXPORT ENGINE</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">1-Click PDF Dossier</span>
                 </div>
-                <div className="flex justify-between items-center bg-[#18181b] light:bg-white p-2.5 border border-zinc-800 light:border-black">
-                  <span className="text-zinc-400">SPEC ACCURACY</span>
-                  <span className="text-amber-400">99.4% Verifiable</span>
+                <div className="flex justify-between items-center bg-white dark:bg-[#18181b] p-2.5 border border-black dark:border-zinc-800">
+                  <span className="text-zinc-600 dark:text-zinc-400">SPEC ACCURACY</span>
+                  <span className="text-amber-600 dark:text-amber-400">99.4% Verifiable</span>
                 </div>
-                <div className="flex justify-between items-center bg-[#18181b] light:bg-white p-2.5 border border-zinc-800 light:border-black">
-                  <span className="text-zinc-400">AUTHENTICATION</span>
-                  <span className="text-emerald-400">Google OAuth + Supabase</span>
+                <div className="flex justify-between items-center bg-white dark:bg-[#18181b] p-2.5 border border-black dark:border-zinc-800">
+                  <span className="text-zinc-600 dark:text-zinc-400">AUTHENTICATION</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">Google OAuth + Supabase</span>
                 </div>
               </div>
             </div>
@@ -174,13 +174,13 @@ export const LandingPage: React.FC = () => {
         </section>
 
         {/* RAG Knowledge System Overview */}
-        <section id="rag" className="neo-brutal-card p-8 space-y-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b-2 border-zinc-800 light:border-black pb-6">
+        <section id="rag" className="neo-brutal-card p-8 space-y-6 bg-white dark:bg-[#18181b] border-2 border-black dark:border-zinc-800">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b-2 border-black dark:border-zinc-800 pb-6">
             <div>
-              <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+              <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
                 RETRIEVAL-AUGMENTED GENERATION
               </span>
-              <h2 className="text-2xl md:text-3xl font-black uppercase font-mono text-zinc-100 light:text-zinc-900">
+              <h2 className="text-2xl md:text-3xl font-black uppercase font-mono text-zinc-900 dark:text-zinc-100">
                 Natural Language Spec Search & PDF Export
               </h2>
             </div>
@@ -200,32 +200,32 @@ export const LandingPage: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-[#09090b] light:bg-zinc-100 p-5 border-2 border-zinc-800 light:border-black shadow-[3px_3px_0px_0px_#000000] space-y-3">
+            <div className="bg-zinc-100 dark:bg-[#09090b] p-5 border-2 border-black dark:border-zinc-800 shadow-[3px_3px_0px_0px_#000000] space-y-3">
               <div className="h-8 w-8 bg-amber-500 text-black border border-black font-mono text-xs font-black flex items-center justify-center">
                 01
               </div>
-              <h3 className="font-bold text-sm font-mono text-zinc-100 light:text-zinc-900 uppercase">Raw Company Document Indexing</h3>
-              <p className="text-xs text-zinc-300 light:text-zinc-700 leading-relaxed font-sans font-medium">
+              <h3 className="font-bold text-sm font-mono text-zinc-900 dark:text-zinc-100 uppercase">Raw Company Document Indexing</h3>
+              <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans font-medium">
                 Upload raw PDFs, supplier spreadsheets, or datasheets. The Ingestion Agent chunks and indexes all technical text into searchable knowledge nodes.
               </p>
             </div>
 
-            <div className="bg-[#09090b] light:bg-zinc-100 p-5 border-2 border-zinc-800 light:border-black shadow-[3px_3px_0px_0px_#000000] space-y-3">
+            <div className="bg-zinc-100 dark:bg-[#09090b] p-5 border-2 border-black dark:border-zinc-800 shadow-[3px_3px_0px_0px_#000000] space-y-3">
               <div className="h-8 w-8 bg-emerald-500 text-black border border-black font-mono text-xs font-black flex items-center justify-center">
                 02
               </div>
-              <h3 className="font-bold text-sm font-mono text-zinc-100 light:text-zinc-900 uppercase">Natural Language Synthesis</h3>
-              <p className="text-xs text-zinc-300 light:text-zinc-700 leading-relaxed font-sans font-medium">
+              <h3 className="font-bold text-sm font-mono text-zinc-900 dark:text-zinc-100 uppercase">Natural Language Synthesis</h3>
+              <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans font-medium">
                 Ask questions like "Which PLCs support 24V DC with IP67 protection?". Gemini AI searches matching document chunks and synthesizes technical answers.
               </p>
             </div>
 
-            <div className="bg-[#09090b] light:bg-zinc-100 p-5 border-2 border-zinc-800 light:border-black shadow-[3px_3px_0px_0px_#000000] space-y-3">
+            <div className="bg-zinc-100 dark:bg-[#09090b] p-5 border-2 border-black dark:border-zinc-800 shadow-[3px_3px_0px_0px_#000000] space-y-3">
               <div className="h-8 w-8 bg-amber-500 text-black border border-black font-mono text-xs font-black flex items-center justify-center">
                 03
               </div>
-              <h3 className="font-bold text-sm font-mono text-zinc-100 light:text-zinc-900 uppercase">1-Click PDF Report Export</h3>
-              <p className="text-xs text-zinc-300 light:text-zinc-700 leading-relaxed font-sans font-medium">
+              <h3 className="font-bold text-sm font-mono text-zinc-900 dark:text-zinc-100 uppercase">1-Click PDF Report Export</h3>
+              <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans font-medium">
                 Never copy-paste answers manually. Click "Export Response as PDF" to generate a clean, formatted technical PDF dossier with verifiable evidence quotes.
               </p>
             </div>
@@ -235,56 +235,56 @@ export const LandingPage: React.FC = () => {
         {/* Enterprise Pricing Section */}
         <section id="pricing" className="space-y-6">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
               ENTERPRISE PLATFORM TIERS
             </span>
-            <h2 className="text-3xl font-black uppercase font-mono text-zinc-100 light:text-zinc-900">
+            <h2 className="text-3xl font-black uppercase font-mono text-zinc-900 dark:text-zinc-100">
               Industrial RAG Scaling
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="neo-brutal-card p-6 flex flex-col justify-between">
+            <div className="neo-brutal-card p-6 flex flex-col justify-between bg-white dark:bg-[#18181b] border-2 border-black dark:border-zinc-800">
               <div className="space-y-4 font-sans">
-                <div className="font-bold text-sm font-mono uppercase text-zinc-300 light:text-zinc-800">STARTER DISTRIBUTOR</div>
-                <div className="text-3xl font-bold font-mono text-amber-400">$499 <span className="text-xs font-sans text-zinc-500">/ mo</span></div>
-                <p className="text-xs text-zinc-300 light:text-zinc-700 font-medium">Ideal for regional distributors managing up to 10,000 active SKUs.</p>
-                <ul className="space-y-2 text-xs font-medium text-zinc-300 light:text-zinc-800 pt-2 font-mono">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> 10,000 RAG Spec Extractions / mo</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> 1-Click PDF Dossier Generator</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Google OAuth & Gmail SSO</li>
+                <div className="font-bold text-sm font-mono uppercase text-zinc-800 dark:text-zinc-300">STARTER DISTRIBUTOR</div>
+                <div className="text-3xl font-bold font-mono text-amber-600 dark:text-amber-400">$499 <span className="text-xs font-sans text-zinc-500">/ mo</span></div>
+                <p className="text-xs text-zinc-700 dark:text-zinc-300 font-medium">Ideal for regional distributors managing up to 10,000 active SKUs.</p>
+                <ul className="space-y-2 text-xs font-medium text-zinc-800 dark:text-zinc-300 pt-2 font-mono">
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> 10,000 RAG Spec Extractions / mo</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> 1-Click PDF Dossier Generator</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> Google OAuth & Gmail SSO</li>
                 </ul>
               </div>
               <button onClick={handleGoogleSignIn} className="w-full neo-brutal-btn py-2.5 mt-6 text-xs font-bold uppercase">Sign In via Gmail</button>
             </div>
 
-            <div className="neo-brutal-card p-6 flex flex-col justify-between border-4 border-amber-500 relative">
+            <div className="neo-brutal-card p-6 flex flex-col justify-between bg-white dark:bg-[#18181b] border-4 border-amber-500 relative">
               <div className="absolute -top-3 right-4 bg-amber-500 text-black border border-black font-mono font-black text-[10px] uppercase px-2 py-0.5">
                 MOST POPULAR
               </div>
               <div className="space-y-4 font-sans">
-                <div className="font-bold text-sm font-mono uppercase text-amber-400">ENTERPRISE INDUSTRIAL</div>
-                <div className="text-3xl font-bold font-mono text-amber-400">$1,999 <span className="text-xs font-sans text-zinc-500">/ mo</span></div>
-                <p className="text-xs text-zinc-300 light:text-zinc-700 font-medium">For global OEMs and enterprise suppliers managing 100,000+ SKUs.</p>
-                <ul className="space-y-2 text-xs font-medium text-zinc-200 light:text-zinc-900 pt-2 font-mono">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Unlimited RAG Queries & PDF Exports</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Gemini Multi-Modal RAG Engine</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Supabase Real-time Sync</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Human Review Queue & Audit Trail</li>
+                <div className="font-bold text-sm font-mono uppercase text-amber-600 dark:text-amber-400">ENTERPRISE INDUSTRIAL</div>
+                <div className="text-3xl font-bold font-mono text-amber-600 dark:text-amber-400">$1,999 <span className="text-xs font-sans text-zinc-500">/ mo</span></div>
+                <p className="text-xs text-zinc-700 dark:text-zinc-300 font-medium">For global OEMs and enterprise suppliers managing 100,000+ SKUs.</p>
+                <ul className="space-y-2 text-xs font-medium text-zinc-900 dark:text-zinc-200 pt-2 font-mono">
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-600 dark:text-amber-400" /> Unlimited RAG Queries & PDF Exports</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-600 dark:text-amber-400" /> Gemini Multi-Modal RAG Engine</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-600 dark:text-amber-400" /> Supabase Real-time Sync</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-600 dark:text-amber-400" /> Human Review Queue & Audit Trail</li>
                 </ul>
               </div>
               <button onClick={handleGoogleSignIn} className="w-full neo-brutal-btn-primary py-2.5 mt-6 text-xs font-black uppercase">Get Started Now</button>
             </div>
 
-            <div className="neo-brutal-card p-6 flex flex-col justify-between">
+            <div className="neo-brutal-card p-6 flex flex-col justify-between bg-white dark:bg-[#18181b] border-2 border-black dark:border-zinc-800">
               <div className="space-y-4 font-sans">
-                <div className="font-bold text-sm font-mono uppercase text-emerald-400">GLOBAL OEM CUSTOM</div>
-                <div className="text-3xl font-bold font-mono text-emerald-400">CUSTOM</div>
-                <p className="text-xs text-zinc-300 light:text-zinc-700 font-medium">Custom deployment for Fortune 500 industrial automation brands.</p>
-                <ul className="space-y-2 text-xs font-medium text-zinc-300 light:text-zinc-800 pt-2 font-mono">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> On-Premises & Private Cloud RAG</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Custom Fine-Tuned AI Models</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> SAP, Oracle & Siemens Integration</li>
+                <div className="font-bold text-sm font-mono uppercase text-emerald-600 dark:text-emerald-400">GLOBAL OEM CUSTOM</div>
+                <div className="text-3xl font-bold font-mono text-emerald-600 dark:text-emerald-400">CUSTOM</div>
+                <p className="text-xs text-zinc-700 dark:text-zinc-300 font-medium">Custom deployment for Fortune 500 industrial automation brands.</p>
+                <ul className="space-y-2 text-xs font-medium text-zinc-800 dark:text-zinc-300 pt-2 font-mono">
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> On-Premises & Private Cloud RAG</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> Custom Fine-Tuned AI Models</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> SAP, Oracle & Siemens Integration</li>
                 </ul>
               </div>
               <button onClick={handleGoogleSignIn} className="w-full neo-brutal-btn py-2.5 mt-6 text-xs font-bold uppercase">Contact Sales</button>
@@ -294,14 +294,14 @@ export const LandingPage: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t-2 border-zinc-800 light:border-black flex flex-col md:flex-row items-center justify-between text-xs font-mono font-bold text-zinc-400 light:text-zinc-700 gap-4">
+      <footer className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t-2 border-black dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-xs font-mono font-bold text-zinc-700 dark:text-zinc-400 gap-4">
         <div>
           © 2026 FORGE AI PLATFORM INC. NEO-BRUTALIST ENTERPRISE RAG ENGINE.
         </div>
         <div className="flex items-center gap-6">
-          <a href="#" className="hover:text-amber-400 transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-amber-400 transition-colors">Terms of Service</a>
-          <a href="#" className="hover:text-amber-400 transition-colors">Documentation</a>
+          <a href="#" className="hover:text-amber-500 transition-colors">Privacy Policy</a>
+          <a href="#" className="hover:text-amber-500 transition-colors">Terms of Service</a>
+          <a href="#" className="hover:text-amber-500 transition-colors">Documentation</a>
         </div>
       </footer>
     </div>
